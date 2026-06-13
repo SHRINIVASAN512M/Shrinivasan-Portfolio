@@ -39,7 +39,7 @@ export const headerData: HeaderData = {
   phone: "+91 75399 20766",
   email: "shrinivasanmurugesan125@gmail.com",
   linkedin: "https://www.linkedin.com/in/shrinivasan-murugesan-975513212/", // Standard LinkedIn profile
-  github: "https://github.com/shrinivasan-m", // Standard GitHub profile
+  github: "https://github.com/SHRINIVASAN512M", // Standard GitHub profile
   location: "Chennai, India",
   availability: "Open to relocation"
 };
