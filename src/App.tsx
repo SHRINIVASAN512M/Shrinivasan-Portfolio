@@ -11,6 +11,8 @@ import {
   headerData, professionalSummary, experiences, projects, skills, statistics, education 
 } from './data';
 import ResumeViewer from './components/ResumeViewer';
+// @ts-ignore
+import profilePic from "./assets/images/profile_pic_shrinivasan_1781374703848.jpg";
 
 const CAROUSEL_SLIDES = [
   {
@@ -98,7 +100,7 @@ export default function App() {
             {/* Ambient blue border ring */}
             <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-sky-500/20 to-blue-500/20 scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300" />
             <img
-              src="/src/assets/images/profile_pic_shrinivasan_1781374703848.jpg"
+              src={profilePic}
               alt="Shrinivasan Murugesan"
               referrerPolicy="no-referrer"
               className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-slate-800 relative z-10 select-none brightness-95 contrast-105 hover:brightness-105 transition-all duration-300 shadow-lg"
