@@ -11,8 +11,6 @@ import {
   headerData, professionalSummary, experiences, projects, skills, statistics, education 
 } from './data';
 import ResumeViewer from './components/ResumeViewer';
-// @ts-ignore
-import profilePic from "./assets/images/profile_pic.png";
 
 const CAROUSEL_SLIDES = [
   {
@@ -48,7 +46,7 @@ export default function App() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const [customProfilePic, setCustomProfilePic] = useState<string | null>(() => {
+  const [customProfilePic] = useState<string | null>(() => {
     try {
       return localStorage.getItem('shrinivasan_portfolio_profile_pic');
     } catch (e) {
@@ -56,29 +54,7 @@ export default function App() {
     }
   });
 
-  // const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   if (file) {
-  //     if (file.size > 4.5 * 1024 * 1024) {
-  //       alert("Please choose a smaller image (under 4.5MB) to ensure proper browser loading.");
-  //       return;
-  //     }
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       const base64String = reader.result as string;
-  //       try {
-  //         localStorage.setItem('shrinivasan_portfolio_profile_pic', base64String);
-  //         setCustomProfilePic(base64String);
-  //       } catch (e) {
-  //         console.error("Failed to save image to localStorage. Utilizing state fallback.");
-  //         setCustomProfilePic(base64String);
-  //       }
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-
-  // Auto-play timer for the header carousel
+  // Auto-play timer for the carousel
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % CAROUSEL_SLIDES.length);
@@ -125,32 +101,21 @@ export default function App() {
         {/* HERO TITLE HEADER - Clean, spacious layout with elegant presentation */}
         <section className="flex flex-col md:flex-row gap-8 items-center border-b border-slate-800/60 pb-10">
           
-          {/* Circular Portrait Image with interactive live uploader */}
-          <div 
-            className="shrink-0 relative group cursor-pointer" 
-            title="Click to change your photo (Upload directly from your device)"
-            onClick={() => document.getElementById('profile-upload-element')?.click()}
-          >
-            <input
-              id="profile-upload-element"
-              type="file"
-              accept="image/*"
-              className="hidden"
-              // onChange={handleImageUpload}
-            />
-            <img
-              src={customProfilePic || profilePic}
-              alt="Shrinivasan Murugesan"
-              referrerPolicy="no-referrer"
-              className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-slate-800 group-hover:border-sky-500 shadow-lg select-none transition-all duration-300 transform group-hover:scale-[1.02]"
-            />
-            {/* Soft, beautiful modern uploader overlay */}
-            <div className="absolute inset-0 bg-slate-950/60 rounded-full flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-              <svg className="w-5 h-5 text-sky-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www-3.org/1999/xhtml">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-              </svg>
-              <span className="text-[9px] text-sky-300 font-mono uppercase tracking-wider font-bold">Upload Photo</span>
-            </div>
+          {/* Circular Portrait Image */}
+          <div className="shrink-0">
+            {customProfilePic ? (
+              <img
+                src={customProfilePic}
+                alt="Shrinivasan Murugesan"
+                referrerPolicy="no-referrer"
+                className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-slate-800 shadow-xl select-none"
+              />
+            ) : (
+              <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
+                <span className="text-3xl font-extrabold tracking-wider text-slate-200 font-serif">SM</span>
+                <span className="text-[10px] text-slate-400 font-mono mt-1">Profile</span>
+              </div>
+            )}
           </div>
 
           {/* Details Column with custom high-standard typography */}
