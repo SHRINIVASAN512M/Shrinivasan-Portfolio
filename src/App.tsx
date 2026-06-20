@@ -56,27 +56,27 @@ export default function App() {
     }
   });
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      if (file.size > 4.5 * 1024 * 1024) {
-        alert("Please choose a smaller image (under 4.5MB) to ensure proper browser loading.");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        try {
-          localStorage.setItem('shrinivasan_portfolio_profile_pic', base64String);
-          setCustomProfilePic(base64String);
-        } catch (e) {
-          console.error("Failed to save image to localStorage. Utilizing state fallback.");
-          setCustomProfilePic(base64String);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (file) {
+  //     if (file.size > 4.5 * 1024 * 1024) {
+  //       alert("Please choose a smaller image (under 4.5MB) to ensure proper browser loading.");
+  //       return;
+  //     }
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       const base64String = reader.result as string;
+  //       try {
+  //         localStorage.setItem('shrinivasan_portfolio_profile_pic', base64String);
+  //         setCustomProfilePic(base64String);
+  //       } catch (e) {
+  //         console.error("Failed to save image to localStorage. Utilizing state fallback.");
+  //         setCustomProfilePic(base64String);
+  //       }
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   // Auto-play timer for the header carousel
   useEffect(() => {
@@ -136,7 +136,7 @@ export default function App() {
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={handleImageUpload}
+              // onChange={handleImageUpload}
             />
             <img
               src={customProfilePic || profilePic}
