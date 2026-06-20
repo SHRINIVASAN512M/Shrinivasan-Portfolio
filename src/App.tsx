@@ -11,6 +11,8 @@ import {
   headerData, professionalSummary, experiences, projects, skills, statistics, education 
 } from './data';
 import ResumeViewer from './components/ResumeViewer';
+// @ts-ignore
+import profilePic from './assets/images/my.png';
 
 const CAROUSEL_SLIDES = [
   {
@@ -45,14 +47,6 @@ export default function App() {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const [customProfilePic] = useState<string | null>(() => {
-    try {
-      return localStorage.getItem('shrinivasan_portfolio_profile_pic');
-    } catch (e) {
-      return null;
-    }
-  });
 
   // Auto-play timer for the carousel
   useEffect(() => {
@@ -102,20 +96,13 @@ export default function App() {
         <section className="flex flex-col md:flex-row gap-8 items-center border-b border-slate-800/60 pb-10">
           
           {/* Circular Portrait Image */}
-          <div className="shrink-0">
-            {customProfilePic ? (
-              <img
-                src={customProfilePic}
-                alt="Shrinivasan Murugesan"
-                referrerPolicy="no-referrer"
-                className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-slate-800 shadow-xl select-none"
-              />
-            ) : (
-              <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
-                <span className="text-3xl font-extrabold tracking-wider text-slate-200 font-serif">SM</span>
-                <span className="text-[10px] text-slate-400 font-mono mt-1">Profile</span>
-              </div>
-            )}
+          <div className="shrink-0 animate-fade-in">
+            <img
+              src={profilePic}
+              alt="Shrinivasan Murugesan"
+              referrerPolicy="no-referrer"
+              className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-slate-800 shadow-xl select-none"
+            />
           </div>
 
           {/* Details Column with custom high-standard typography */}
